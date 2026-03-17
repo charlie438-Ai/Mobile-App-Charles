@@ -1,0 +1,27 @@
+class Task {
+  final String title;
+  final String courseCode;
+  final DateTime dueDate;
+  bool isComplete;
+
+  Task({
+    required this.title,
+    required this.courseCode,
+    required this.dueDate,
+    this.isComplete = false,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'courseCode': courseCode,
+        'dueDate': dueDate.toIso8601String(),
+        'isComplete': isComplete,
+      };
+
+  factory Task.fromJson(Map<String, dynamic> json) => Task(
+        title: json['title'],
+        courseCode: json['courseCode'],
+        dueDate: DateTime.parse(json['dueDate']),
+        isComplete: json['isComplete'],
+      );
+}
