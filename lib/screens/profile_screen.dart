@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/student.dart';
+import '../widgets/profile_card.dart';
 import 'task_list_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -32,23 +33,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Card(
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Text('Name: ${student.name}', style: const TextStyle(fontSize: 18)),
-                      const SizedBox(height: 8),
-                      Text('ID: ${student.studentId}', style: const TextStyle(fontSize: 18)),
-                      const SizedBox(height: 8),
-                      Text('Programme: ${student.programme}', style: const TextStyle(fontSize: 18)),
-                      const SizedBox(height: 8),
-                      Text('Level: ${student.level}', style: const TextStyle(fontSize: 18)),
-                    ],
-                  ),
-                ),
-              ),
+              ProfileCard(student: student),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
