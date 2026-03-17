@@ -20,17 +20,19 @@ class _TaskListScreenState extends State<TaskListScreen> {
     _loadTasks();
   }
 
+  // Load tasks from SharedPreferences
   Future<void> _loadTasks() async {
     final prefs = await SharedPreferences.getInstance();
     final tasksString = prefs.getString('tasks');
     
     if (tasksString != null) {
+      // Decode the saved JSON string back into a list of Task objects
       final List<dynamic> decodedTasks = jsonDecode(tasksString);
       setState(() {
         tasks = decodedTasks.map((task) => Task.fromJson(task)).toList();
       });
     } else {
-      // Hardcoded list fallback
+      // Hardcoded list fallback if no saved data is found
       setState(() {
         tasks = [
           Task(title: 'Assignment 1', courseCode: 'CS101', dueDate: DateTime.now().add(const Duration(days: 2))),
